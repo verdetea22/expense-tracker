@@ -37,8 +37,15 @@ class _ExpensesState extends State<Expenses>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      // col within a col, need to define dim
-      body: Column(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add))
+        ],
+      ),
+      body: Column(// col within a col, need to define dim
+        // Toolbar with the add button => Row()
         children: [
           const Text('the chart'),
           Expanded(
