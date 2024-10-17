@@ -23,6 +23,15 @@ class ExpenseItem extends StatelessWidget{
               children: [
                 // "$"" icon + $value
                 Text('\$${expense.amount.toStringAsFixed(2)}'), //double
+                const Spacer(), //takes all avaliable space
+                // group date and category together
+                Row(
+                  children: [
+                    Icon(categoryIcons[expense.category]),
+                    const SizedBox(width: 8),
+                    Text(expense.formattedDate),
+                  ],
+                ),
               ],
             ),
           ],
