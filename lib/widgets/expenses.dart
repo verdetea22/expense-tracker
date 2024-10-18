@@ -95,7 +95,7 @@ class _ExpensesState extends State<Expenses>{
       body: Column(// col within a col, need to define dim
         // Toolbar with the add button => Row()
         children: [
-          const Text('the chart'),
+        
           Expanded(
             child: mainContent
           )
