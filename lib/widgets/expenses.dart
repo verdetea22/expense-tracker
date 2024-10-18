@@ -38,6 +38,7 @@ class _ExpensesState extends State<Expenses>{
 //user interactable forum
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      isScrollControlled: true, //ensures keyboard doesnt block fields
       context: context,
       builder: (ctx) => NewExpense(onAddExpense: _addExpense),
     );
