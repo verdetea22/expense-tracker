@@ -8,7 +8,6 @@ class NewExpense extends StatefulWidget{
   @override
   State<NewExpense> createState(){
     return _NewExpenseState();
-
   }
 }
 
@@ -30,6 +29,31 @@ class _NewExpenseState extends State<NewExpense>{
     setState(() {
       _selectedDate = pickedDate;
     });
+  }
+
+  void _submitExpenseData() {
+   final enteredAmount = double.tryParse(_amountController.text); 
+   final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+    if (_titleController.text.trim().isEmpty || 
+      amountIsInvalid || 
+      _selectedDate == null) {
+    showDialog(
+      context: context, 
+      builder: (ctx) => AlertDialog(
+        title: const Text('Invalid input'),
+        content: const Text('Please ensure a valid title, amount, date and category were selected'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+            }, 
+            child: const Text('Okay'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
   }
 
   @override
@@ -112,10 +136,7 @@ class _NewExpenseState extends State<NewExpense>{
                 child: const Text('Cancel'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(_titleController.text);
-                  print(_amountController.text);
-                }, 
+                onPressed: _submitExpenseData, 
                 child: const Text('Save Expense')
               ),
             ],
