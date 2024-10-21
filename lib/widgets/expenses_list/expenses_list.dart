@@ -21,6 +21,8 @@ class ExpensesList extends StatelessWidget{
       //makes cards swipeable, must then delete stored data
       itemBuilder: (ctx, index) => Dismissible(
         key: ValueKey(expenses[index]), 
+        background: Container(color: Theme.of(context).colorScheme.error,
+        ),
         onDismissed: (direction) {
           onRemoveExpense(expenses[index]);
         },
