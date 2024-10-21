@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
@@ -75,6 +77,8 @@ class _ExpensesState extends State<Expenses>{
 
   @override
   Widget build(BuildContext context){
+    final width = MediaQuery.of(context).size.width;
+    
     Widget mainContent = const Center(
       child: Text('No expenses found. Start adding some!'),
     );
@@ -93,7 +97,7 @@ class _ExpensesState extends State<Expenses>{
             icon: const Icon(Icons.add))
         ],
       ),
-      body: Column(// col within a col, need to define dim
+      body: width < 600 ? Column(// col within a col, need to define dim
         // Toolbar with the add button => Row()
         children: [
           Chart(expenses: _reigsteredExpenses),
@@ -101,7 +105,15 @@ class _ExpensesState extends State<Expenses>{
             child: mainContent
           )
         ],
-      ),
+      )
+    : Row(children: [
+          Expanded(
+            child: Chart(expenses: _reigsteredExpenses),
+          ),
+          Expanded(
+            child: mainContent
+          ),
+        ]),
     );
   }
 }
