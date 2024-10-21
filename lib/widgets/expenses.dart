@@ -1,6 +1,7 @@
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
+import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:flutter/material.dart';
 
 
@@ -95,7 +96,7 @@ class _ExpensesState extends State<Expenses>{
       body: Column(// col within a col, need to define dim
         // Toolbar with the add button => Row()
         children: [
-        
+          Chart(expenses: _reigsteredExpenses),
           Expanded(
             child: mainContent
           )
